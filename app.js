@@ -2,10 +2,12 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const cors = require("./middlewares/cors");
 
 var indexRouter = require("./routes/index");
 var profilRouter = require("./routes/profil");
 const productsRouter = require("./routes/products");
+const mongoose = require("mongoose");
 
 var app = express();
 
@@ -14,8 +16,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-// Database connection
+app.use(cors.handle);
 
+// Database connection
 mongoose.connect("mongodb://localhost:27017/api-back-martine", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
