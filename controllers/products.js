@@ -22,7 +22,7 @@ const productDetails = {
           order: {
             travel_name: req.body.travel_name,
             travellers_number: req.body.travellers_number,
-            price: req.body.price,
+            total_price: req.body.total_price,
             travel_date: req.body.travel_date,
           },
         },
@@ -43,7 +43,7 @@ const productDetails = {
     const productInfo = req.params.product;
 
     Product.find({
-      travel_name: { $nin: productInfo },
+      travel_name: { $ne: productInfo },
       category: { $in: "mer" },
     })
       .limit(2)
