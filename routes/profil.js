@@ -1,9 +1,18 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+const profilController = require("../controllers/profil");
+const authentification = require("../middlewares/authentif");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+/* POST profil register. */
+router.post("/register", profilController.register);
+
+/* POST profil login. */
+router.post("/login", profilController.login);
+
+/* PUT profil edit.*/
+router.put("/edit", authentification, profilController.edit);
+
+/* DELETE profil edit.*/
+router.delete("/delete", profilController.delete);
 
 module.exports = router;
