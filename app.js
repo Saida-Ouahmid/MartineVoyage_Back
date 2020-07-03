@@ -3,11 +3,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("./middlewares/cors");
-const mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var profilRouter = require("./routes/profil");
 const productsRouter = require("./routes/products");
+//import de mongoose
+const mongoose = require("mongoose");
+const cors = require("./middlewares/cors");
 
 var app = express();
 
@@ -17,10 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors.handle);
-
-/*Database connection*/
-
-mongoose.connect("mongodb://localhost:27017/apiBackMartine", {
+//data base connection
+mongoose.connect("mongodb://localhost:27017/api-back-martine", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -28,7 +28,6 @@ mongoose.connect("mongodb://localhost:27017/apiBackMartine", {
 mongoose.connection.once("open", () => {
   console.log("database connected");
 });
-
 app.use("/", indexRouter);
 app.use("/profil", profilRouter);
 app.use("/products", productsRouter);

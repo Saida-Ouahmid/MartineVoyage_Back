@@ -15,7 +15,7 @@ const ProfilSchema = new mongoose.Schema(
       {
         travel_name: String,
         travellers_number: Number,
-        price: Number,
+        total_price: Number,
         travel_date: String,
       },
     ],
