@@ -8,7 +8,7 @@ const ProfilSchema = new mongoose.Schema(
   {
     lastname: String,
     firstname: String,
-    tel: Number,
+    tel: String,
     email: { type: String, unique: true },
     password: String,
     hobbies: String,

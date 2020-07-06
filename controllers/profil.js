@@ -65,7 +65,7 @@ const profilController = {
 
     if (
       cacahuete.test(email) == false ||
-      typeof req.body.password != "string"
+      typeof req.body.password != "string" /**check des formats emails et pwd */
     ) {
       res.status(417);
       res.json({
@@ -116,14 +116,14 @@ const profilController = {
 
   edit: (req, res, next) => {
     const cacahuete = RegExp("([A-z]|[0-9])+@([A-z]|[0-9])+.[A-z]{2,3}");
-    const email = req.body.email;
+    const email = req.body.profil.email;
     if (
-      typeof req.body.firstname != "string" ||
-      typeof req.body.lastname != "string" ||
-      typeof req.body.tel != "string" ||
+      typeof req.body.profil.firstname != "string" ||
+      typeof req.body.profil.lastname != "string" ||
+      typeof req.body.profil.tel != "string" ||
       cacahuete.test(email) == false ||
-      typeof req.body.password != "string" ||
-      (req.body.hobbies && typeof req.body.hobbies != "string")
+      /*typeof req.body.password != "string" ||*/
+      (req.body.profil.hobbies && typeof req.body.profil.hobbies != "string")
     ) {
       res.status(417);
       res.json({
@@ -132,17 +132,16 @@ const profilController = {
       });
     } else {
       Profil.updateOne(
-        /*Mise à jour données de profil*/
+        /*Mise à jour données de profil du l'user repéré grace a son id*/
         {
-          /*userId: data._id - - - -ou- - - - _id:"5efc65ghduz567dgdvd"*/
+          _id: req.user._id,
         },
         {
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          tel: req.body.tel,
-          email: req.body.email,
-          password: req.body.password,
-          hobbies: req.body.hobbies,
+          firstname: req.body.profil.firstname,
+          lastname: req.body.profil.lastname,
+          tel: req.body.profil.tel,
+          email: req.body.profil.email,
+          hobbies: req.body.profil.hobbies,
         },
         (err) => {
           if (err) {
