@@ -1,14 +1,15 @@
 /*Mongoose imports*/
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
-/*User schema*/
+/* Template schéma correspond à une collection MongoDB et définit la forme des documents au sein de cette collection*/
 
 const ProfilSchema = new mongoose.Schema(
   {
-    firstname: String,
     lastname: String,
+    firstname: String,
     tel: Number,
-    email: String,
+    email: { type: String, unique: true },
     password: String,
     hobbies: String,
     order: [
@@ -22,5 +23,8 @@ const ProfilSchema = new mongoose.Schema(
   },
   { collection: "user" }
 );
+
+/*  uniqueValidator verifie que 2 utilisateurs n'ont pas la même adresse mail */
+ProfilSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("Profil", ProfilSchema);

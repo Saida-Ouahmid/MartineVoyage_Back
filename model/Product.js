@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+/*User schema pour template produit*/
+
 const productSchema = new mongoose.Schema(
   {
     category: String,
