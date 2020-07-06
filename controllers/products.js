@@ -1,5 +1,6 @@
 const Product = require("../model/Product");
 const Profil = require("../model/Profil");
+
 const productController = {
   //enregistrement du product dans la base de donnée
   productCreate: (req, res) => {
@@ -54,9 +55,7 @@ const productController = {
   /*Valide la réservation*/
   reservation: (req, res, next) => {
     Profil.updateOne(
-      {
-        _id: req.user._id,
-      },
+      { _id: req.body.userId },
       {
         $push: {
           order: {
