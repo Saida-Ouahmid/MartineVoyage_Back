@@ -9,7 +9,6 @@ var profilRouter = require("./routes/profil");
 const productsRouter = require("./routes/products");
 //import de mongoose
 const mongoose = require("mongoose");
-const cors = require("./middlewares/cors");
 
 var app = express();
 
