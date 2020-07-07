@@ -1,9 +1,10 @@
 var express = require("express");
-var router = express.Router();
 const productController = require("../controllers/products");
-const authentification = require("../middlewares/authentif");
+const multer = require("../middlewares/multer");
+var router = express.Router();
 
 /* GET users listing. */
+router.post("/new-travels", multer, productController.productCreate);
 router.get("/new-travels", productController.getProduct);
 router.get("/category/:category", productController.categoryProduct);
 router.get("/:product", productController.product);

@@ -18,6 +18,6 @@ router.post("/login", profilController.login);
 router.put("/edit", authentification, profilController.edit);
 
 /* DELETE profil delete.*/
-router.delete("/delete", profilController.delete);
+router.delete("/delete", authentification, profilController.delete);
 
 module.exports = router;
