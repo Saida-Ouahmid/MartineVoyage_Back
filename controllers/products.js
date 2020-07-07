@@ -2,13 +2,19 @@ const Product = require("../model/Product");
 const Profil = require("../model/Profil");
 const productController = {
   //enregistrement du product dans la base de donnée
-  product: (req, res) => {
+  productCreate: (req, res) => {
+    console.log(req.file.path);
+
+    const filePath = req.file.path.replace("public", "");
+
     const newProduct = new Product({
+      category: req.body.category,
       travel_name: req.body.travel_name,
       short_description: req.body.short_description,
       long_description: req.body.long_description,
       main_picture: req.body.main_picture,
-      picture: req.body.picture,
+      picture: [{ original: filePath, thumbnail: filePath }],
+
       price: req.body.price,
     });
     newProduct.save((err) => {
