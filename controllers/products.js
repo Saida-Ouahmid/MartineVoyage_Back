@@ -1,5 +1,6 @@
 const Product = require("../model/Product");
 const Profil = require("../model/Profil");
+
 const productController = {
   //enregistrement du product dans la base de donnée
   productCreate: (req, res) => {
@@ -60,7 +61,7 @@ const productController = {
   /*Valide la réservation*/
   reservation: (req, res, next) => {
     Profil.updateOne(
-      { _id: "5efc73b79428a510485f9323" },
+      { _id: req.body.userId },
       {
         $push: {
           order: {
@@ -85,6 +86,7 @@ const productController = {
   /*Affiche les 2 derniers produits*/
   more: (req, res, next) => {
     const productInfo = req.params.product;
+    const categoryInfo = req.params.category;
 
     Product.find({
       travel_name: { $ne: productInfo },
