@@ -1,6 +1,8 @@
 /*Mongoose imports*/
 const mongoose = require("mongoose");
+
 const uniqueValidator = require("mongoose-unique-validator");
+/*check que notre email est bien unique */
 
 /* Template schéma correspond à une collection MongoDB et définit la forme des documents au sein de cette collection*/
 
