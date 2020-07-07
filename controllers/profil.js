@@ -132,7 +132,7 @@ const profilController = {
       });
     } else {
       Profil.updateOne(
-        /*Mise à jour données de profil du l'user repéré grace a son id*/
+        /*Modif et mise à jour des données l'user repéré grace a son id */
         {
           _id: req.user._id,
         },
@@ -161,7 +161,7 @@ const profilController = {
   delete: (req, res, next) => {
     Profil.deleteOne(
       {
-        /*userId: data._id - - - -ou- - - - _id:"5efc65ghduz567dgdvd"*/
+        _id: req.user._id,
       },
       (err) => {
         if (err) {
