@@ -55,7 +55,7 @@ const productController = {
   /*Valide la réservation*/
   reservation: (req, res, next) => {
     Profil.updateOne(
-      { _id: req.body.userId },
+      { _id: req.user._id },
       {
         $push: {
           order: {
@@ -71,7 +71,10 @@ const productController = {
           console.log(err);
           res.json({ message: "tu as fait des bétises" });
         } else {
-          res.json({ message: "Merci pour votre réservation" });
+          res.json({
+            message:
+              "Merci pour votre réservation. Nous reviendrons vers vous pour les détails du séjour.",
+          });
         }
       }
     );
@@ -84,7 +87,7 @@ const productController = {
 
     Product.find({
       travel_name: { $ne: productInfo },
-      category: { $in: "mer" },
+      category: categoryInfo,
     })
       .limit(2)
       .exec((err, data) => {

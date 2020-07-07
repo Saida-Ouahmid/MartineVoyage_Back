@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema(
     main_picture: String,
     picture: [{ original: String, thumbnail: String }],
     price: Number,
+    dates: [{ dates: String }],
   },
   {
     collection: "products",

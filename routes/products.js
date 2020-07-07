@@ -8,6 +8,6 @@ router.get("/new-travels", productController.getProduct);
 router.get("/category/:category", productController.categoryProduct);
 router.get("/:product", productController.product);
 router.post("/reservation", authentification, productController.reservation);
-router.get("/more/:product", productController.more);
+router.get("/more/:product/:category", productController.more);
 
 module.exports = router;
